@@ -7,4 +7,8 @@ down:
 down-clear:
 	docker-compose down -v --remove-orphans
 composer-install:
-	docker-compose run --rm test-php-cli composer install
+	docker-compose run --rm my_force_php_cli composer install
+migrate:
+	docker-compose run --rm my_force_php_cli composer app migrate -- --interactive=0
+fixtures:
+	docker-compose run --rm my_force_php_cli composer fixtures -- --interactive=0

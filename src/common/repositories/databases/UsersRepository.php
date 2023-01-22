@@ -10,7 +10,7 @@ final class UsersRepository extends AbstractRepository implements UsersRepositor
 {
     public function findOneActive(string $id): ?User
     {
-        $query = User::find()->active()->byId();
+        $query = User::find()->active()->byId($id);
 
         return $query->one();
     }
@@ -19,7 +19,7 @@ final class UsersRepository extends AbstractRepository implements UsersRepositor
     {
         $query = User::find()->active();
 
-        return $query;
+        return $query->all();
     }
 
     public function create(User $user): void

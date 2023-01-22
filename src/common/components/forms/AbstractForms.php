@@ -5,7 +5,7 @@ namespace common\components\forms;
 use ReflectionClass;
 use ReflectionProperty;
 
-abstract class AbstractForm implements FormInterface
+abstract class AbstractForm implements FormsInterface
 {
     public function setAttributes(array $attributes = []): void
     {

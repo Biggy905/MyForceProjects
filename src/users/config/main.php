@@ -39,6 +39,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['verb' => ['get'], 'pattern' => '', 'route' => 'index/index'],
+                ['verb' => ['get'], 'pattern' => 'news', 'route' => 'news/list'],
+                ['verb' => ['get'], 'pattern' => "news/<id:\d+>", 'route' => 'news/item'],
             ],
         ],
     ],

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\components;
+namespace common\components;
 
-use common\components\forms\FormInterface;
+use common\components\forms\FormsInterface;
 use yii\base\DynamicModel;
 
 final class Validator
@@ -10,7 +10,7 @@ final class Validator
     private DynamicModel $model;
 
     public function __construct(
-        public readonly FormInterface $form
+        public readonly FormsInterface $form
     ) {
         $this->init();
     }

@@ -14,4 +14,5 @@ return [
         ],
         'db' => require 'db.php',
     ],
+    'container' => require __DIR__ . '/container/containers.php',
 ];

@@ -14,6 +14,7 @@ final class m230122_134328_CreateUsers extends Migration
                 'password' => $this->string(),
                 'email' => $this->string(),
                 'status' => $this->string(),
+                'role' => $this->string(),
                 'created_at' => $this->dateTime(),
                 'updated_at' => $this->dateTime(),
                 'deleted_at' => $this->dateTime(),

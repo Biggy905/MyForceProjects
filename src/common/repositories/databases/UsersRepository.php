@@ -10,9 +10,16 @@ final class UsersRepository extends AbstractRepository implements UsersRepositor
 {
     public function findOneActive(string $id): ?User
     {
-        $query = User::find()->active()->byId();
+        $query = User::findTrait()->active()->byId();
 
         return $query->one();
+    }
+
+    public function findAll(): array
+    {
+        $query = User::findTrait()->active();
+
+        return $query;
     }
 
     public function create(User $user): void
@@ -22,15 +29,8 @@ final class UsersRepository extends AbstractRepository implements UsersRepositor
         }
     }
 
-    public function update(User $user): void
-    {
-        if (!$user->update()) {
-            throw new LogicException('Cannot update user!');
-        }
-    }
-
     public function delete(User $user): void
     {
-        $user->delete();
+        $user->softDelete();
     }
 }

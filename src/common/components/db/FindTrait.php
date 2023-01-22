@@ -7,7 +7,7 @@ use yii\db\ActiveQuery;
 
 trait FindTrait
 {
-    public static function find(): ActiveQuery
+    public static function softFind(): ActiveQuery
     {
         $query = parent::find();
 

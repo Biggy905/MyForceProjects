@@ -2,7 +2,7 @@
 
 namespace common\components\forms;
 
-interface FormInterface
+interface FormsInterface
 {
 
 }

@@ -26,7 +26,7 @@ return [
         'deleted_at' => null,
     ],
     [
-        'id' => 3,
+        'id' => 4,
         'name' => 'Интересное',
         'status' => 'non_active',
         'created_at' => '2023-01-22 16:00:00',

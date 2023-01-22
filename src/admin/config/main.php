@@ -9,7 +9,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-admin',
@@ -39,8 +38,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => require 'routers.php',
         ],
     ],
     'params' => $params,

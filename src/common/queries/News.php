@@ -4,8 +4,8 @@ namespace common\queries;
 
 use common\components\db\DeleteTrait;
 use common\components\db\FindTrait;
-use common\entities\User;
-use common\enums\UserStatusEnums;
+use common\entities\News as NewsEntity;
+use common\enums\NewsStatusEnums;
 use yii\db\ActiveQuery;
 
 final class News extends ActiveQuery
@@ -14,27 +14,27 @@ final class News extends ActiveQuery
 
     public function byId(string $id): self
     {
-        return $this->andWhere([User::tableName() . 'id' => $id]);
+        return $this->andWhere([NewsEntity::tableName() . 'id' => $id]);
     }
 
     public function active(): self
     {
-        return $this->andWhere([User::tableName() . 'status' => UserStatusEnums::USER_ACTIVE->value]);
+        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_ACTIVE->value]);
     }
 
     public function nonActive(): self
     {
-        return $this->andWhere([User::tableName() . 'status' => UserStatusEnums::USER_NON_ACTIVE]);
+        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_NON_ACTIVE->value]);
     }
 
     public function blocking(): self
     {
-        return $this->andWhere([User::tableName() . 'status' => UserStatusEnums::USER_BLOCKING]);
+        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_BLOCKING->value]);
     }
 
     public function blacklist(): self
     {
-        return $this->andWhere([User::tableName() . 'status' => UserStatusEnums::USER_NON_ACTIVE])
-            ->andWhere([User::tableName() . 'status' => UserStatusEnums::USER_BLOCKING]);
+        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_NON_ACTIVE->value])
+            ->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_BLOCKING->value]);
     }
 }

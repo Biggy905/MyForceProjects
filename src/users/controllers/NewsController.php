@@ -4,6 +4,8 @@ namespace users\controllers;
 
 use common\components\ActiveController;
 use common\components\Validator;
+use common\repositories\databases\NewsRepository;
+use common\repositories\NewsRepositoryInterface;
 use users\forms\NewsItemForm;
 use users\services\NewsService;
 use yii\db\Exception;
@@ -18,12 +20,13 @@ final class NewsController extends ActiveController
         $config = []
     ) {
         parent::__construct($id, $module, $config);
-        var_dump("____"); die;
     }
 
     public function actionList()
     {
         $service = $this->serviceNews->list();
+
+        return $this->render('_list', compact('service'));
     }
 
     public function actionItem(string $id)
@@ -32,7 +35,7 @@ final class NewsController extends ActiveController
         $form->setAttributes(['id' => $id]);
 
         $validator = new Validator($form);
-        if ($validator->validate()) {
+        if (!$validator->validate()) {
             throw new Exception('Not valid id!');
         }
 

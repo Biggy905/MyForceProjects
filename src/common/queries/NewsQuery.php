@@ -14,27 +14,27 @@ final class NewsQuery extends ActiveQuery
 
     public function byId(string $id): self
     {
-        return $this->andWhere([NewsEntity::tableName() . 'id' => $id]);
+        return $this->andWhere([NewsEntity::tableName() . '.id' => $id]);
     }
 
     public function active(): self
     {
-        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_ACTIVE->value]);
+        return $this->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_ACTIVE->value]);
     }
 
     public function nonActive(): self
     {
-        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_NON_ACTIVE->value]);
+        return $this->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_NON_ACTIVE->value]);
     }
 
     public function blocking(): self
     {
-        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_BLOCKING->value]);
+        return $this->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_BLOCKING->value]);
     }
 
     public function blacklist(): self
     {
-        return $this->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_NON_ACTIVE->value])
-            ->andWhere([NewsEntity::tableName() . 'status' => NewsStatusEnums::NEWS_BLOCKING->value]);
+        return $this->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_NON_ACTIVE->value])
+            ->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_BLOCKING->value]);
     }
 }

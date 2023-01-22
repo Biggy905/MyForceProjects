@@ -11,7 +11,7 @@ final class NewsCategoriesRepository extends AbstractRepository implements NewsC
 {
     public function findOneActive(string $id): ?User
     {
-        $query = User::find()->active()->byId();
+        $query = User::find()->active()->byId($id);
 
         return $query->one();
     }

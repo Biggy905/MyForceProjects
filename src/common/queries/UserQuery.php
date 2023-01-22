@@ -19,7 +19,7 @@ final class UserQuery extends ActiveQuery
 
     public function byId(string $id): self
     {
-        return $this->andWhere([User::tableName() . 'id' => $id]);
+        return $this->andWhere([User::tableName() . '.id' => $id]);
     }
 
     public function nonActive(): self

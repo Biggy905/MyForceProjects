@@ -3,7 +3,7 @@
 return [
     'class' => \yii\db\Connection::class,
     'dsn' => 'pgsql:host=' . getenv('DB_HOSTNAME') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE'),
-    'username' => getenv('DB_USERNAME'),
+    'username' => getenv('DB_USER'),
     'password' => getenv('DB_PASSWORD'),
     'charset' => 'utf8',
     'enableSchemaCache' => true,

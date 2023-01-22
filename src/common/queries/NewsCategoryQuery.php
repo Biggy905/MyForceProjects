@@ -14,27 +14,27 @@ final class NewsCategoryQuery extends ActiveQuery
 
     public function byId(string $id): self
     {
-        return $this->andWhere([NewsCategoryEntity::tableName() . 'id' => $id]);
+        return $this->andWhere([NewsCategoryEntity::tableName() . '.id' => $id]);
     }
 
     public function active(): self
     {
-        return $this->andWhere([NewsCategoryEntity::tableName() . 'status' => UserStatusEnums::USER_ACTIVE->value]);
+        return $this->andWhere([NewsCategoryEntity::tableName() . '.status' => UserStatusEnums::USER_ACTIVE->value]);
     }
 
     public function nonActive(): self
     {
-        return $this->andWhere([NewsCategoryEntity::tableName() . 'status' => UserStatusEnums::USER_NON_ACTIVE]);
+        return $this->andWhere([NewsCategoryEntity::tableName() . '.status' => UserStatusEnums::USER_NON_ACTIVE]);
     }
 
     public function blocking(): self
     {
-        return $this->andWhere([NewsCategoryEntity::tableName() . 'status' => UserStatusEnums::USER_BLOCKING]);
+        return $this->andWhere([NewsCategoryEntity::tableName() . '.status' => UserStatusEnums::USER_BLOCKING]);
     }
 
     public function blacklist(): self
     {
-        return $this->andWhere([NewsCategoryEntity::tableName() . 'status' => UserStatusEnums::USER_NON_ACTIVE])
-            ->andWhere([NewsCategoryEntity::tableName() . 'status' => UserStatusEnums::USER_BLOCKING]);
+        return $this->andWhere([NewsCategoryEntity::tableName() . '.status' => UserStatusEnums::USER_NON_ACTIVE])
+            ->andWhere([NewsCategoryEntity::tableName() . '.status' => UserStatusEnums::USER_BLOCKING]);
     }
 }

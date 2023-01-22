@@ -2,9 +2,9 @@
 
 namespace users\forms;
 
-use common\components\forms\AbstractForm;
+use common\components\forms\AbstractForms;
 
-final class NewsItemForm extends AbstractForm
+final class NewsItemForm extends AbstractForms
 {
     public string $id;
 

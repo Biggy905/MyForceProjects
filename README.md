@@ -19,3 +19,8 @@ make migrate
 ```
 make fixture
 ```
+### RBAC
+```
+make rbac-init
+make rbac-assign
+```

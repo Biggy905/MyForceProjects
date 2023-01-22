@@ -2,12 +2,16 @@
 
 namespace common\queries;
 
+use common\components\db\DeleteTrait;
+use common\components\db\FindTrait;
 use common\entities\User;
 use common\enums\UserStatusEnums;
 use yii\db\ActiveQuery;
 
 final class News extends ActiveQuery
 {
+    use FindTrait, DeleteTrait;
+
     public function byId(string $id): self
     {
         return $this->andWhere([User::tableName() . 'id' => $id]);

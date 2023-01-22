@@ -10,14 +10,14 @@ final class UsersRepository extends AbstractRepository implements UsersRepositor
 {
     public function findOneActive(string $id): ?User
     {
-        $query = User::findTrait()->active()->byId();
+        $query = User::find()->active()->byId();
 
         return $query->one();
     }
 
     public function findAll(): array
     {
-        $query = User::findTrait()->active();
+        $query = User::find()->active();
 
         return $query;
     }

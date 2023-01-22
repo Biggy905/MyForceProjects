@@ -5,12 +5,13 @@ namespace common\entities;
 use common\components\db\FindTrait;
 use common\components\Model;
 use common\helpers\DateTimeHelpers;
+use common\queries\NewsCategoryQuery;
 use yii\behaviors\TimestampBehavior;
 
 final class NewsCategory extends Model
 {
     use FindTrait {
-        FindTrait::softFind as public findTrait;
+        FindTrait::find as public findTrait;
     }
 
     public static function tableName()
@@ -26,5 +27,10 @@ final class NewsCategory extends Model
                 'value' => DateTimeHelpers::createDateTime(),
             ],
         ];
+    }
+
+    public static function find(): NewsCategoryQuery
+    {
+        return (new NewsCategoryQuery(get_called_class()))->andWhere(self::findTrait()->where);
     }
 }

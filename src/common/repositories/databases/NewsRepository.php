@@ -10,14 +10,14 @@ final class NewsRepository extends AbstractRepository implements NewsRepositoryI
 {
     public function findOneActive(string $id): ?News
     {
-        $query = News::findTrait()->active()->byId();
+        $query = News::find()->active()->byId();
 
         return $query->one();
     }
 
     public function findAll(): array
     {
-        $query = News::findTrait()->active();
+        $query = News::find()->active();
 
         return $query->all();
     }

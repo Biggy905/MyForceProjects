@@ -11,21 +11,21 @@ final class NewsCategoriesRepository extends AbstractRepository implements NewsC
 {
     public function findOneActive(string $id): ?User
     {
-        $query = User::findTrait()->active()->byId();
+        $query = User::find()->active()->byId();
 
         return $query->one();
     }
 
     public function create(User $user): void
     {
-        if (!$user->findTrait()) {
+        if (!$user->save()) {
             throw new LogicException('Cannot create users');
         }
     }
 
     public function update(User $user): void
     {
-        if (!$user->update()) {
+        if (!$user->save()) {
             throw new LogicException('Cannot update user!');
         }
     }

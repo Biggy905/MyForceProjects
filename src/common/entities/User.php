@@ -5,12 +5,13 @@ namespace common\entities;
 use common\components\db\FindTrait;
 use common\components\Model;
 use common\helpers\DateTimeHelpers;
+use common\queries\UserQuery;
 use yii\behaviors\TimestampBehavior;
 
 final class User extends Model
 {
     use FindTrait {
-        FindTrait::softFind as public findTrait;
+        FindTrait::find as public findTrait;
     }
 
     public static function tableName()
@@ -26,5 +27,10 @@ final class User extends Model
                 'value' => DateTimeHelpers::createDateTime(),
             ],
         ];
+    }
+
+    public static function find(): UserQuery
+    {
+        return (new UserQuery(get_called_class()))->andWhere(self::findTrait()->where);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace console\controllers;
 
+use common\enums\UsersPermissionsEnums;
+use common\enums\UsersRolesEnums;
 use common\repositories\UsersRepositoryInterface;
 use yii\console\Controller;
 use Yii;
@@ -13,40 +15,23 @@ final class RbacController extends Controller
         $auth = Yii::$app->getAuthManager();
         $auth->removeAll();
 
-        $operation = $auth->createRole(UserRole::OPERATION->value);
-        $operation->description = UserRole::OPERATION->name;
-        $auth->add($operation);
-
-        $analyst = $auth->createRole(UserRole::ANALYST->value);
-        $analyst->description = UserRole::ANALYST->name;
-        $auth->add($analyst);
-
-        $admin = $auth->createRole(UserRole::ADMIN->value);
-        $admin->description = UserRole::ADMIN->name;
+        $admin = $auth->createRole(UsersRolesEnums::ROLE_ADMIN->value);
+        $admin->description = UsersRolesEnums::ROLE_ADMIN->name;
         $auth->add($admin);
 
-        $permission = $auth->createPermission(UserPermission::MANAGE_USERS->value);
-        $permission->description = UserPermission::MANAGE_USERS->name;
+        $user = $auth->createRole(UsersRolesEnums::ROLE_USER->value);
+        $user->description = UsersRolesEnums::ROLE_USER->name;
+        $auth->add($user);
+
+        $permission = $auth->createPermission(UsersPermissionsEnums::MANAGER_ADMIN->value);
+        $permission->description = UsersPermissionsEnums::MANAGER_ADMIN->name;
         $auth->add($permission);
         $auth->addChild($admin, $permission);
 
-        $permission = $auth->createPermission(UserPermission::MANAGE_PHONE_NUMBERS->value);
-        $permission->description = UserPermission::MANAGE_PHONE_NUMBERS->name;
+        $permission = $auth->createPermission(UsersPermissionsEnums::MANAGER_USER->value);
+        $permission->description = UsersPermissionsEnums::MANAGER_USER->name;
         $auth->add($permission);
-        $auth->addChild($admin, $permission);
-
-        $permission = $auth->createPermission(UserPermission::VIEW_CAMPAIGNS->value);
-        $permission->description = UserPermission::VIEW_CAMPAIGNS->name;
-        $auth->add($permission);
-        $auth->addChild($admin, $permission);
-        $auth->addChild($operation, $permission);
-        $auth->addChild($analyst, $permission);
-
-        $permission = $auth->createPermission(UserPermission::MANAGE_CAMPAIGNS->value);
-        $permission->description = UserPermission::MANAGE_CAMPAIGNS->name;
-        $auth->add($permission);
-        $auth->addChild($admin, $permission);
-        $auth->addChild($operation, $permission);
+        $auth->addChild($user, $permission);
     }
 
     public function actionAssign(UsersRepositoryInterface $usersRepository): void

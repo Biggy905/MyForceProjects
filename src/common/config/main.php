@@ -1,4 +1,9 @@
 <?php
+
+use yii\di\Container;
+
+$container = require (__DIR__ . '/container/containers.php');
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -10,9 +15,12 @@ return [
             'class' => \yii\caching\FileCache::class,
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'common\components\rbac\RbacManager',
         ],
         'db' => require 'db.php',
     ],
-    'container' => require __DIR__ . '/container/containers.php',
+    'container' => [
+        'singletons' => $container,
+        'definitions' => [],
+    ],
 ];

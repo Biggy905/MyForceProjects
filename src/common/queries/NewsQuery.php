@@ -8,7 +8,7 @@ use common\entities\News as NewsEntity;
 use common\enums\NewsStatusEnums;
 use yii\db\ActiveQuery;
 
-final class News extends ActiveQuery
+final class NewsQuery extends ActiveQuery
 {
     use FindTrait, DeleteTrait;
 

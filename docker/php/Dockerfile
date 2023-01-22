@@ -2,7 +2,7 @@ FROM php:8.1-fpm-alpine
 
 RUN apk add --update linux-headers
 
-# Install dependencies
+# Install dependencies and extension
 RUN apk add --no-cache --update \
     autoconf g++ make \
     postgresql-dev \
@@ -10,6 +10,13 @@ RUN apk add --no-cache --update \
     && docker-php-ext-install pgsql pdo_pgsql pcntl \
     && docker-php-ext-enable xdebug redis \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+
+RUN apk add --no-cache imagemagick imagemagick-dev
+
+RUN pecl install -o -f imagick\
+    &&  docker-php-ext-enable imagick
+
+RUN apk del --no-cache
 
 # Copy configs
 COPY ./docker/php/config /usr/local/etc/php/conf.d

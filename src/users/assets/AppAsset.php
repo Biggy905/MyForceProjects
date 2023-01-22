@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\assets;
+namespace users\assets;
 
 use yii\web\AssetBundle;
 
@@ -18,6 +18,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset',
+        'yii\bootstrap4\BootstrapAsset',
     ];
 }

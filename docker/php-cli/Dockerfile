@@ -11,6 +11,13 @@ RUN apk add --no-cache --update \
     && docker-php-ext-enable xdebug redis \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 
+RUN apk add --no-cache imagemagick imagemagick-dev
+
+RUN pecl install -o -f imagick\
+    &&  docker-php-ext-enable imagick
+
+RUN apk del --no-cache
+
 # Copy configs
 COPY ./docker/php/config /usr/local/etc/php/conf.d
 

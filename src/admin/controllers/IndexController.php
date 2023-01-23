@@ -2,7 +2,17 @@
 
 namespace admin\controllers;
 
-class IndexController
-{
+use common\components\ActiveController;
 
+final class IndexController extends ActiveController
+{
+    public function actionIndex()
+    {
+
+    }
+
+    public function actionError()
+    {
+
+    }
 }

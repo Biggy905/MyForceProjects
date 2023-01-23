@@ -15,9 +15,9 @@ final class NewsRepository extends AbstractRepository implements NewsRepositoryI
         return $query->one();
     }
 
-    public function findAll(): array
+    public function findAll(array $filter): array
     {
-        $query = News::find()->active();
+        $query = News::find()->active()->filter($filter);
 
         return $query->all();
     }

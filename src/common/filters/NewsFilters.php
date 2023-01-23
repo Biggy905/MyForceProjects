@@ -6,9 +6,9 @@ use common\enums\NewsFiltersAttrEnums;
 
 final class NewsFilters
 {
-    public function toFilter(array $filters): array
+    public static function toFilter(array $filters): array
     {
-        return $this->clearFilter($filters);
+        return (new NewsFilters)->clearFilter($filters);
     }
 
     private function clearFilter($filters): array
@@ -16,9 +16,12 @@ final class NewsFilters
         /*
         $filters = [
             'filter' => [
-                'attribute' => 'id';
+                'attribute' => 'id',
+                'operator' => 'is',
                 'value' => [],
-            ]
+            ],
+            'page' => 1,
+            'limit' => 50,
         ];
         */
         $cleanFilters = [];
@@ -32,33 +35,29 @@ final class NewsFilters
         }
 
         foreach ($filters['filter'] as $index => $filter) {
-            if ($this->validAttributes($index)) {
-                $cleanFilters[] = $filter;
+            if (!$this->validateAttributes($filter['attribute'])) {
+                continue;
             }
+            if (!$this->validateOperator($filter['operator'])) {
+                continue;
+            }
+
+
         }
 
         return $cleanFilters;
     }
 
-    private function validAttributes($index): ?bool
+    private function validateAttributes($attributes): bool
     {
-        $attr = match ($index) {
-            NewsFiltersAttrEnums::ATTR_ID->value,
-            NewsFiltersAttrEnums::ATTR_DESCRIPTION->value,
-            NewsFiltersAttrEnums::ATTR_TITLE->value,
-            NewsFiltersAttrEnums::ATTR_DATE->value => true,
-            default => null,
-        };
-
-        return empty($attr);
+        //$status = Filter
+        return false;
     }
 
-    private function validOperation($index): ?bool
+    private function validateOperator($operator): bool
     {
-        $operator = match ($index) {
-            default => null,
-        };
+        //$status = Filter
 
-        return empty($operator);
+        return false;
     }
 }

@@ -2,7 +2,22 @@
 
 namespace admin\controllers;
 
-class SignUpController
-{
+use common\components\ActiveController;
 
+final class SignUpController extends ActiveController
+{
+    public function actionRegistration()
+    {
+
+    }
+
+    public function actionSignIn()
+    {
+
+    }
+
+    public function actionSignOut()
+    {
+
+    }
 }

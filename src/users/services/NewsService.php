@@ -10,15 +10,21 @@ use users\forms\NewsItemForm;
 final class NewsService extends AbstractServices
 {
     public function __construct(
-        private readonly NewsRepositoryInterface $repositoryNews
+        private readonly NewsRepositoryInterface $repositoryNews,
+
     ) {
 
     }
     public function list(): array
     {
-        $repository = $this->repositoryNews;
+        $filter = [
+            'page' => 1,
+            'limit' => 50,
+        ];
 
-        return $repository->findAll();
+        $repository = $this->repositoryNews->findAll($filter);
+
+        return $repository;
     }
 
     public function item(NewsItemForm $form)

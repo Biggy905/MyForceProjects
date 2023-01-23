@@ -37,4 +37,12 @@ final class NewsQuery extends ActiveQuery
         return $this->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_NON_ACTIVE->value])
             ->andWhere([NewsEntity::tableName() . '.status' => NewsStatusEnums::NEWS_BLOCKING->value]);
     }
+
+    public function filter($filter): self
+    {
+        return $this->andWhere([])
+            ->orderBy('DESC')
+            ->limit($filter['filter'])
+            ->limit($filter['limit']);
+    }
 }
